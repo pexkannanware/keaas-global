@@ -9,15 +9,14 @@ that owns ports 80/443 and routes by domain name.
 
 ## 1) Copy the project to the droplet
 
-From your Mac:
+The repo lives at https://github.com/pexkannanware/keaas-global — clone it directly on the
+droplet:
 
 ```bash
-rsync -avz --exclude node_modules --exclude .next --exclude out \
-  "/Users/santhosh/Desktop/KEASS-main/" your-user@droplet-ip:/var/www/keaasglobal/
+ssh your-user@droplet-ip
+cd /var/www
+git clone https://github.com/pexkannanware/keaas-global.git keaasglobal
 ```
-
-(Or `git init` this folder, push to a new GitHub repo, and `git clone` it on the droplet
-instead — whichever you prefer. `rsync` is fastest for a first deploy.)
 
 ## 2) Shared Docker network
 
@@ -163,7 +162,7 @@ curl -I https://thedivinewill.in     # confirm divine-will still fine
 
 ```bash
 cd /var/www/keaasglobal
-git pull            # or re-rsync
+git pull
 docker compose up -d --build
 ```
 
