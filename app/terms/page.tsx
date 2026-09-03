@@ -26,7 +26,7 @@ export default function TermsPage() {
           for commercial use without written consent.
         </p>
         <p>
-          Questions about these terms may be sent to hello@keaas.com.
+          Questions about these terms may be sent to Keaasglobal@kannanware.com.
         </p>
       </Container>
     </>

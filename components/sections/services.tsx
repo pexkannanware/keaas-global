@@ -22,7 +22,6 @@ const iconWrap = [
   "border-white/20 text-white bg-white/5",
   "border-white/25 text-white bg-white/10",
 ] as const;
-const rule = ["border-keaas/35", "border-white/20", "border-white/25"] as const;
 const numberTone = ["text-keaas/40", "text-white/40", "text-white/50"] as const;
 const headerRule = ["border-line", "border-white/15", "border-white/20"] as const;
 
@@ -82,23 +81,16 @@ export function Services() {
                 <h3 className="mt-3 min-h-16 text-2xl leading-8 tracking-tight">
                   {service.title}
                 </h3>
-                <ul className="mt-8 flex-1 space-y-3">
-                  {service.points.map((point) => (
-                    <li
-                      key={point}
-                      className={`border-l pl-4 text-sm leading-6 ${rule[i]} ${muted[i]}`}
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                <p className={`mt-8 flex-1 text-sm leading-7 ${muted[i]}`}>
+                  {service.cardSummary}
+                </p>
                 <Link
                   href={`/services/${service.slug}`}
                   className={`group/link mt-10 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.16em] uppercase ${
                     i === 0 ? "text-ink hover:text-keaas" : "text-white"
                   }`}
                 >
-                  Staff this way
+                  Know more
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
                 </Link>
               </article>

@@ -147,6 +147,53 @@ h3,
   }
 }
 
+@keyframes client-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.client-ticker-viewport {
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.client-ticker-viewport::before,
+.client-ticker-viewport::after {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 4rem;
+  height: 100%;
+  pointer-events: none;
+  content: "";
+}
+
+.client-ticker-viewport::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--paper), transparent);
+}
+
+.client-ticker-viewport::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--paper), transparent);
+}
+
+.client-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: client-ticker 52s linear infinite;
+}
+
+.client-ticker:hover .client-ticker-track,
+.client-ticker:focus-within .client-ticker-track {
+  animation-play-state: paused;
+}
+
 @keyframes roadmap-dash {
   to {
     stroke-dashoffset: -280;

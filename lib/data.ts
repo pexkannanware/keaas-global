@@ -2,7 +2,7 @@ export const company = {
   name: "KEAAS",
   formal: "Knowledge & Expertise as a Service",
   tagline: "Expertise Delivered.",
-  email: "hello@keaas.com",
+  email: "Keaasglobal@kannanware.com",
   description:
     "Experts-as-a-Service company providing specialist talent and complete delivery teams to System Integrators worldwide.",
 };
@@ -46,46 +46,105 @@ export const clients = [
   },
   { name: "JK Fenner", src: "/images/clients/jk-fenner-hd.png" },
   { name: "Alghanim Industries", src: "/images/clients/alghanim-hd.png" },
+  { name: "Atos", src: "/images/clients/atos.png" },
+  { name: "Deloitte", src: "/images/clients/deloitte-new.png" },
+  { name: "Dollar General", src: "/images/clients/dollar-general.png" },
+  { name: "Wipro", src: "/images/clients/wipro-new.png" },
+  {
+    name: "NTT DATA",
+    src: "/images/clients/ntt-data-new.png",
+    testimonial:
+      "KEAAS's ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
+  },
+  {
+    name: "Parrys",
+    src: "/images/clients/parrys-new.png",
+    testimonial:
+      "We appreciate KEAAS's SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
+  },
+  { name: "SAP", src: "/images/clients/sap.png" },
+  { name: "Shell", src: "/images/clients/shell.png" },
+  { name: "IBM", src: "/images/clients/ibm-new.png" },
 ] as const;
 
 export const services = [
   {
     slug: "individual-experts",
-    title: "Individual Experts",
-    hook: "Access the right expertise",
+    title: "SAP Functional & Technical Experts",
+    hook: "Deep SAP expertise, deployed on demand.",
+    cardSummary:
+      "Flexible SAP specialists for implementation, transformation, integration, and PrimeCare AMS.",
     summary:
-      "Highly experienced domain experts and industry veterans who join a live System Integrator programme as a precise, accountable extension of the team.",
+      "Access experienced SAP functional and technical specialists when and where your business needs them. Our experts strengthen your team across implementation, transformation, integration, and PrimeCare AMS—helping you close capability gaps, resolve complex issues, and accelerate delivery.",
     detail:
-      "When a workstream needs one scarce SAP skill — not a bench of generalists — KEAAS places a domain expert who has already delivered the same process in an enterprise landscape. Individual Experts integrate into your operating cadence, report through your lead, and stay for the window the programme actually needs.",
+      "Our SAP Functional & Technical Experts combine deep domain knowledge with delivery experience—helping you move faster, reduce risk, and get more value from SAP.",
     points: [
-      "Highly experienced Domain Experts",
-      "Industry Veterans",
+      "Solution Design — Validate business requirements and translate them into practical, scalable SAP solutions.",
+      "Configuration & Development — Deliver functional configuration, ABAP development, Fiori/UI5, BTP, and other technical capabilities.",
+      "Integration — Design, build, and troubleshoot integrations between SAP and external applications.",
+      "Data Migration — Support migration strategy, data cleansing, validation, reconciliation, and cutover readiness.",
+      "Testing — Strengthen SIT, UAT, regression, performance testing, and defect resolution.",
+      "Cutover & Go-Live — Support cutover planning, technical readiness, hypercare, and post-go-live stabilization.",
+      "Complex Incident Resolution — Resolve L2/L3 functional and technical incidents.",
+      "Problem Management — Identify root causes and eliminate recurring issues.",
+      "Enhancements — Deliver business-led functional and technical improvements.",
+      "Integration Support — Resolve interface, API, middleware, and integration failures.",
+      "Release & Upgrade Support — Support releases, patches, upgrades, and technical changes.",
+      "Specialist Advisory — Provide expert guidance for complex business and technology decisions.",
     ],
+    groups: ["For SAP Implementation", "For PrimeCare AMS"],
   },
   {
     slug: "tactical-pods",
-    title: "Tactical Pods",
-    hook: "Scale without adding fixed overhead",
+    title: "SAP Expert Pods",
+    hook: "One Pod. Multiple Experts. One Outcome.",
+    cardSummary:
+      "A coordinated team of functional, technical, and architecture experts around one outcome.",
     summary:
-      "Small, cross-functional teams assigned to specific clients — a ready unit of complementary SAP skills, not a collection of résumés.",
+      "SAP Expert Pods are ready-to-deploy, multi-disciplinary teams that bring together functional consultants, technical specialists, and solution architects around a single business outcome.",
     detail:
-      "Tactical Pods are assembled around a named client and a defined outcome. A compact mix of functional and technical specialists works as one unit inside the SI delivery system, with a shared RAID log, a named counterpart, and a cadence you already run.",
+      "Instead of sourcing and coordinating multiple individual experts, you gain an integrated team that can rapidly assess, design, deliver, and optimize your SAP solution. Each pod is tailored to your requirement and can scale up or down as priorities change.",
     points: [
-      "Small, cross-functional teams assigned to specific clients",
+      "Design — Define the right SAP solution, process, and architecture.",
+      "Diagnose — Investigate complex application, integration, process, and delivery challenges.",
+      "Deliver — Configure, develop, integrate, test, and implement the agreed solution.",
+      "Resolve — Rapidly deploy specialist capability for blockers, production issues, or complex AMS incidents.",
+      "Optimize — Simplify processes, improve performance, automate operations, and maximize SAP value.",
+      "Enable — Transfer knowledge and build sustainable in-house capability.",
+      "Solution Designer / SAP Architect — Guides solution direction, architecture, and delivery decisions.",
+      "Functional Experts — Finance, Procurement, Sales & Distribution, Manufacturing, Supply Chain.",
+      "Technical Experts — ABAP, SAP BTP, Integration, Fiori/UI5, Basis.",
+      "Fixed-duration pods — Focused delivery initiatives of 4, 8, or 12 weeks.",
+      "On-demand pods — Activated when specialist intervention or accelerated delivery is required.",
+      "AMS specialist pods — Embedded within your existing support organisation.",
     ],
+    groups: ["What an Expert Pod Delivers", "Typical Pod Composition", "Flexible Engagement Models"],
   },
   {
     slug: "swat-team",
-    title: "SWAT Team",
-    hook: "Close capability gaps fast",
+    title: "Software Action & Troubleshooting Team (SWAT)",
+    hook: "Rapid intervention. Decisive action. Sustainable recovery.",
+    cardSummary:
+      "Senior SAP specialists who stabilise critical delivery, quality, integration, and operational challenges.",
     summary:
-      "A specialised task force of senior consultants and solution architects, custom-fit to tackle the most critical challenges.",
+      "The SAP SWAT Team is an expert intervention team for SAP programmes facing critical delivery, quality, integration, or operational challenges.",
     detail:
-      "When a programme is on the critical path — design locked, cutover slipping, or a landscape decision that cannot wait — KEAAS deploys a SWAT Team of senior consultants and solution architects. The fit is custom: the exact seniority, modules and architecture depth the situation demands, held to the same operating discipline as your own principals.",
+      "SWAT brings clarity and control when an SAP programme needs decisive intervention—and helps create the foundation for sustainable recovery.",
     points: [
-      "Specialized task force of senior consultants & solution architects",
-      "Custom fit to tackle the most critical challenges",
+      "Assess — Determine why the programme is at risk: scope, schedule, quality, technology, resources, governance, dependencies, or readiness.",
+      "Stabilise — Address urgent risks and blockers, establish ownership, and focus on critical priorities.",
+      "Diagnose — Conduct a fact-based deep dive to identify root causes, not just visible symptoms.",
+      "Act — Build and execute a time-bound recovery plan with actions, owners, milestones, and measurable outcomes.",
+      "Recover — Guide the programme from Red to Amber to Green with focused leadership and disciplined execution.",
+      "Transition — Hand control back with the right governance, controls, and lessons learned in place.",
+      "Delayed or failing SAP implementations",
+      "Repeated go-live or cutover issues",
+      "Critical integration or data migration failures",
+      "High-volume production incidents",
+      "Unresolved quality, testing, or performance concerns",
+      "Programme governance, ownership, or delivery breakdowns",
     ],
+    groups: ["How SWAT Helps", "When to Engage SWAT"],
   },
 ] as const;
 

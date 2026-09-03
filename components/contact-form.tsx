@@ -44,9 +44,20 @@ export function ContactForm() {
     }
 
     setState({ ok: false, error: "", pending: true });
-    window.setTimeout(() => {
-      setState({ ok: true, error: "", pending: false });
-    }, 400);
+    const subject = `KEAAS enquiry from ${name}`;
+    const body = [
+      `Name: ${name}`,
+      `Work email: ${email}`,
+      `Company: ${company}`,
+      `Phone: ${String(data.get("phone") ?? "").trim() || "Not provided"}`,
+      `Expertise: ${expertise}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+
+    window.location.href = `mailto:Keaasglobal@kannanware.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setState({ ok: true, error: "", pending: false });
   }
 
   return (

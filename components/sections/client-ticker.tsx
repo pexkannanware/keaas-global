@@ -7,25 +7,28 @@ import { clients } from "@/lib/data";
 
 export function ClientLogos() {
   const [activeClient, setActiveClient] = useState<string | null>(null);
+  const tickerClients = [...clients, ...clients];
 
   return (
     <section
       aria-label="Selected clients"
-      className="overflow-visible border-y border-line bg-paper"
+      className="client-ticker border-y border-line bg-paper"
     >
-      <Container className="overflow-visible grid grid-cols-2 py-5 sm:grid-cols-3 sm:py-7 lg:grid-cols-6">
-        {clients.map((client) => {
+      <Container className="client-ticker-viewport overflow-visible py-5 sm:py-7">
+        <div className="client-ticker-track">
+        {tickerClients.map((client, index) => {
           const hasTestimonial = "testimonial" in client;
           const isActive = activeClient === client.name;
+          const isDuplicate = index >= clients.length;
 
           return (
             <figure
-              key={client.name}
-              className="group relative z-0 flex h-24 items-center justify-center overflow-visible border-line px-5 sm:h-28 sm:px-7 lg:border-l lg:first:border-l-0"
-              tabIndex={hasTestimonial ? 0 : undefined}
-              onMouseEnter={() => hasTestimonial && setActiveClient(client.name)}
+              key={`${client.name}-${index}`}
+              className="group relative z-0 flex h-24 w-[10rem] shrink-0 items-center justify-center overflow-visible border-l border-line px-5 first:border-l-0 sm:h-28 sm:w-[12rem] sm:px-7"
+              tabIndex={hasTestimonial && !isDuplicate ? 0 : undefined}
+              onMouseEnter={() => hasTestimonial && !isDuplicate && setActiveClient(client.name)}
               onMouseLeave={() => setActiveClient(null)}
-              onFocus={() => hasTestimonial && setActiveClient(client.name)}
+              onFocus={() => hasTestimonial && !isDuplicate && setActiveClient(client.name)}
               onBlur={() => setActiveClient(null)}
             >
               <Image
@@ -35,10 +38,10 @@ export function ClientLogos() {
                 height={120}
                 className="max-h-14 w-auto max-w-full object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out group-hover:scale-105 group-focus:scale-105 sm:max-h-16"
               />
-              {hasTestimonial ? (
+              {hasTestimonial && !isDuplicate ? (
                 <figcaption
                   aria-hidden={!isActive}
-                  className={`pointer-events-none absolute top-[calc(100%+0.5rem)] left-1/2 z-50 w-[17.5rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 border border-line bg-paper px-4 py-3.5 text-left shadow-[0_10px_28px_rgba(0,0,0,0.1)] transition-all duration-200 ${
+                    className={`pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-1/2 z-50 w-[17.5rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 border border-line bg-paper px-4 py-3.5 text-left shadow-[0_10px_28px_rgba(0,0,0,0.1)] transition-all duration-200 ${
                     isActive
                       ? "visible translate-y-0 opacity-100"
                       : "invisible translate-y-1 opacity-0"
@@ -57,6 +60,7 @@ export function ClientLogos() {
             </figure>
           );
         })}
+        </div>
       </Container>
     </section>
   );

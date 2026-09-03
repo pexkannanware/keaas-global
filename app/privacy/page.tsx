@@ -27,7 +27,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           To request access, correction or deletion of information you have
-          submitted, write to hello@keaas.com.
+          submitted, write to Keaasglobal@kannanware.com.
         </p>
       </Container>
     </>
