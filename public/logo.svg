@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <title>KEAAS Global</title>
+  <g fill="#B40000">
+    <path d="M38 18h38v204H38V18Z"/>
+    <path d="M88 112 176 18h-42L76 98v44l58 80h42L88 128v-16Z"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="92" cy="96" r="9"/>
+    <circle cx="122" cy="96" r="9"/>
+    <path d="M86 108c0 10 6 18 14 22 3 1.5 5 4 5 8v10H79c-4 0-7-3-7-7v-15c0-10 6-18 14-18Z"/>
+    <path d="M128 108c0 10-6 18-14 22-3 1.5-5 4-5 8v10h26c4 0 7-3 7-7v-15c0-10-6-18-14-18Z"/>
+    <path d="M99 128c4 6 12 6 16 0 2 8 1 16-8 20-9-4-10-12-8-20Z"/>
+  </g>
+  <circle cx="107" cy="132" r="5" fill="#B40000"/>
+  <text x="100" y="198" text-anchor="middle" fill="#B40000" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4">KEAAS</text>
+  <text x="100" y="222" text-anchor="middle" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="7">GLOBAL</text>
+</svg>
