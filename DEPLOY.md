@@ -18,7 +18,7 @@ cd /var/www
 git clone https://github.com/pexkannanware/keaas-global.git keaasglobal
 ```
 
-## 2) Shared Docker network
+### 2) Shared Docker network
 
 Reuses the same `shared_web` network divine-will already created. Skip this if it exists:
 
