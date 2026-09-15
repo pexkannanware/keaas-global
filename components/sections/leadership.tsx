@@ -23,7 +23,7 @@ export function Leadership() {
         <div className="lg:col-span-5 lg:col-start-8">
           <Reveal>
             <p className="text-base leading-8 text-muted">
-              KEAAS is built on decades of collective experience in technology,
+              KEAAS Global Services is built on decades of collective experience in technology,
               consulting and enterprise delivery. The standard is simple:
               expertise that joins a live programme and raises its quality.
             </p>

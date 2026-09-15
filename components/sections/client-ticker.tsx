@@ -1,21 +1,74 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Container } from "@/components/ui";
 import { clients } from "@/lib/data";
 
 export function ClientLogos() {
   const [activeClient, setActiveClient] = useState<string | null>(null);
+  const [dragOffset, setDragOffset] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef({ pointerId: -1, startX: 0, startOffset: 0 });
   const tickerClients = [...clients, ...clients];
+
+  function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
+    if (!trackRef.current) return;
+    const transform = window.getComputedStyle(trackRef.current).transform;
+    const currentOffset = transform === "none" ? 0 : new DOMMatrix(transform).m41;
+
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startOffset: currentOffset,
+    };
+    trackRef.current.setPointerCapture(event.pointerId);
+    setDragOffset(currentOffset);
+    setIsDragging(true);
+  }
+
+  function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
+    if (!isDragging || event.pointerId !== dragRef.current.pointerId) return;
+    setDragOffset(dragRef.current.startOffset + event.clientX - dragRef.current.startX);
+  }
+
+  function handlePointerUp(event: React.PointerEvent<HTMLDivElement>) {
+    if (event.pointerId !== dragRef.current.pointerId) return;
+    if (trackRef.current?.hasPointerCapture(event.pointerId)) {
+      trackRef.current.releasePointerCapture(event.pointerId);
+    }
+    setIsDragging(false);
+    dragRef.current.pointerId = -1;
+  }
+
+  function handleWheel(event: React.WheelEvent<HTMLDivElement>) {
+    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
+    const transform = window.getComputedStyle(event.currentTarget).transform;
+    const currentOffset = transform === "none" ? 0 : new DOMMatrix(transform).m41;
+    const movement = event.deltaX || event.deltaY;
+
+    event.preventDefault();
+    setDragOffset(currentOffset - movement);
+    setIsDragging(true);
+  }
 
   return (
     <section
       aria-label="Selected clients"
-      className="client-ticker border-y border-line bg-paper"
+      className={`client-ticker relative z-30 border-y border-line bg-paper ${isDragging ? "is-interacting" : ""}`}
     >
       <Container className="client-ticker-viewport overflow-visible py-5 sm:py-7">
-        <div className="client-ticker-track">
+        <div
+          ref={trackRef}
+          className="client-ticker-track"
+          style={dragOffset === null ? undefined : { transform: `translate3d(${dragOffset}px, 0, 0)` }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onWheel={handleWheel}
+        >
         {tickerClients.map((client, index) => {
           const hasTestimonial = "testimonial" in client;
           const isActive = activeClient === client.name;
@@ -24,7 +77,7 @@ export function ClientLogos() {
           return (
             <figure
               key={`${client.name}-${index}`}
-              className="group relative z-0 flex h-24 w-[10rem] shrink-0 items-center justify-center overflow-visible border-l border-line px-5 first:border-l-0 sm:h-28 sm:w-[12rem] sm:px-7"
+              className={`group relative flex h-24 w-[10rem] shrink-0 items-center justify-center overflow-visible border-l border-line px-5 first:border-l-0 sm:h-28 sm:w-[12rem] sm:px-7 ${isActive ? "z-40" : "z-0"}`}
               tabIndex={hasTestimonial && !isDuplicate ? 0 : undefined}
               onMouseEnter={() => hasTestimonial && !isDuplicate && setActiveClient(client.name)}
               onMouseLeave={() => setActiveClient(null)}
@@ -41,18 +94,19 @@ export function ClientLogos() {
               {hasTestimonial && !isDuplicate ? (
                 <figcaption
                   aria-hidden={!isActive}
-                    className={`pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-1/2 z-50 w-[17.5rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 border border-line bg-paper px-4 py-3.5 text-left shadow-[0_10px_28px_rgba(0,0,0,0.1)] transition-all duration-200 ${
+                    className={`pointer-events-none absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[19rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 overflow-hidden rounded-[0.2rem] border border-[#d8c9b2] bg-[#fffdf8] px-5 py-5 text-left shadow-[0_18px_45px_rgba(38,31,23,0.18)] transition-all duration-300 ${
                     isActive
-                      ? "visible translate-y-0 opacity-100"
-                      : "invisible translate-y-1 opacity-0"
+                      ? "visible translate-y-0 scale-100 opacity-100"
+                      : "invisible translate-y-2 scale-[0.98] opacity-0"
                   }`}
                 >
-                  <p className="text-[0.8125rem] leading-6 text-ink-2">
-                    <span className="text-keaas">“</span>
+                  <span className="mb-3 block h-px w-10 bg-keaas" aria-hidden="true" />
+                  <p className="font-serif text-[0.9375rem] leading-7 text-ink-2">
+                    <span className="mr-0.5 text-2xl leading-none text-keaas">“</span>
                     {client.testimonial}
-                    <span className="text-keaas">”</span>
+                    <span className="ml-0.5 text-2xl leading-none text-keaas">”</span>
                   </p>
-                  <span className="mt-2.5 block text-[0.625rem] tracking-[0.14em] text-muted uppercase">
+                  <span className="mt-4 block text-[0.625rem] font-semibold tracking-[0.18em] text-keaas uppercase">
                     {client.name}
                   </span>
                 </figcaption>

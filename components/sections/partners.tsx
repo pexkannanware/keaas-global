@@ -49,7 +49,7 @@ export function Partners() {
 
           <div className="mt-12">
             <Button href="/contact" variant="light">
-              Partner with KEAAS
+              Partner with KEAAS Global Services
             </Button>
           </div>
         </div>
@@ -59,7 +59,7 @@ export function Partners() {
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src="/images/collaboration.jpg"
-                alt="Indian delivery partners confirming a KEAAS engagement"
+                alt="Indian delivery partners confirming a KEAAS Global Services engagement"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 45vw, 100vw"

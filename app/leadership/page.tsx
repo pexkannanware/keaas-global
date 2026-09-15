@@ -10,7 +10,7 @@ export default function LeadershipPage() {
   return (
     <>
       <PageIntro eyebrow="Leadership" title="Vision. Experience. Commitment.">
-        KEAAS is guided by a simple standard: expertise that joins a live
+        KEAAS Global Services is guided by a simple standard: expertise that joins a live
         programme and raises its quality.
       </PageIntro>
       <Container className="max-w-3xl space-y-6 py-16 text-base leading-8 text-muted">
@@ -30,7 +30,7 @@ export default function LeadershipPage() {
         <Reveal>
           <Eyebrow>The team</Eyebrow>
           <h2 className="display mt-4 text-3xl text-ink sm:text-4xl">
-            Leading KEAAS
+            Leading KEAAS Global Services
           </h2>
         </Reveal>
         <div className="mt-10">
@@ -39,7 +39,7 @@ export default function LeadershipPage() {
       </Container>
 
       <Container className="pb-24">
-        <Button href="/contact">Talk to KEAAS</Button>
+            <Button href="/contact">Talk to KEAAS Global Services</Button>
       </Container>
     </>
   );

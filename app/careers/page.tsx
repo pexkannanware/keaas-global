@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CareersPage() {
   return (
     <>
-      <PageIntro eyebrow="Careers" title="Join the KEAAS bench.">
+      <PageIntro eyebrow="Careers" title="Join the KEAAS Global Services bench.">
         We look for professionals who have already delivered inside complex
         enterprise programmes — and who can raise the standard of the room they
         enter.

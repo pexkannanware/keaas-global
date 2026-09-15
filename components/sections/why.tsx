@@ -11,14 +11,14 @@ export function Why() {
       <Container className="py-20 md:py-24 lg:py-32">
         <div className="grid items-start gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
-            <Eyebrow>Why KEAAS</Eyebrow>
+            <Eyebrow>Why KEAAS Global Services</Eyebrow>
             <h2
               id="why-heading"
               className="display mt-5 text-4xl text-ink sm:text-5xl md:text-6xl"
             >
               Why System Integrators
               <br />
-              choose KEAAS.
+              choose KEAAS Global Services.
             </h2>
           </Reveal>
           <Reveal className="lg:col-span-5">
@@ -82,7 +82,7 @@ export function Why() {
           </div>
 
           <div className="mt-12">
-            <Button href="/why-keaas">Why KEAAS</Button>
+            <Button href="/why-keaas">Why KEAAS Global Services</Button>
           </div>
         </div>
       </Container>

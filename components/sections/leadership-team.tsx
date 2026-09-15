@@ -22,7 +22,7 @@ export function LeadershipTeam() {
                 {person.image ? (
                   <Image
                     src={person.image}
-                    alt={`Portrait of ${person.name}, ${person.role} at KEAAS`}
+                    alt={`Portrait of ${person.name}, ${person.role} at KEAAS Global Services`}
                     fill
                     className="object-cover grayscale-[15%] transition-all duration-500 group-hover:grayscale-0"
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"

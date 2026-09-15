@@ -1,5 +1,5 @@
 export const company = {
-  name: "KEAAS",
+  name: "KEAAS Global Services",
   formal: "Knowledge & Expertise as a Service",
   tagline: "Expertise Delivered.",
   email: "Keaasglobal@kannanware.com",
@@ -36,13 +36,13 @@ export const clients = [
     name: "Dhaksha Drones",
     src: "/images/clients/dhaksha-hd.png",
     testimonial:
-      "KEAAS's SAP MM & SD consultants provided excellent support across procurement, inventory, sales, and distribution processes with a clear understanding of our business needs.",
+      "KEAAS Global Services' SAP MM & SD consultants provided excellent support across procurement, inventory, sales, and distribution processes with a clear understanding of our business needs.",
   },
   {
     name: "Leitwind",
     src: "/images/clients/leitwind-hd.png",
     testimonial:
-      "We are highly satisfied with the support delivered by the SAP Plant Maintenance consultant from KEAAS in optimizing our production and maintenance processes.",
+      "We are highly satisfied with the support delivered by the SAP Plant Maintenance consultant from KEAAS Global Services in optimizing our production and maintenance processes.",
   },
   { name: "JK Fenner", src: "/images/clients/jk-fenner-hd.png" },
   { name: "Alghanim Industries", src: "/images/clients/alghanim-hd.png" },
@@ -54,13 +54,13 @@ export const clients = [
     name: "NTT DATA",
     src: "/images/clients/ntt-data-new.png",
     testimonial:
-      "KEAAS's ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
+      "KEAAS Global Services' ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
   },
   {
     name: "Parrys",
     src: "/images/clients/parrys-new.png",
     testimonial:
-      "We appreciate KEAAS's SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
+      "We appreciate KEAAS Global Services' SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
   },
   { name: "SAP", src: "/images/clients/sap.png" },
   { name: "Shell", src: "/images/clients/shell.png" },
@@ -401,35 +401,35 @@ export const testimonials = [
   {
     featured: true,
     quote:
-      "We appreciate KEAAS's SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
+      "We appreciate KEAAS Global Services' SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
     role: "SAP FICO & Treasury",
     company: "Parrys",
   },
   {
     featured: false,
     quote:
-      "KEAAS's SAP MM & SD consultants provided excellent support across procurement, inventory, sales, and distribution processes with a clear understanding of our business needs.",
+      "KEAAS Global Services' SAP MM & SD consultants provided excellent support across procurement, inventory, sales, and distribution processes with a clear understanding of our business needs.",
     role: "SAP MM & SD",
     company: "Dhaksha Drones",
   },
   {
     featured: false,
     quote:
-      "We are highly satisfied with the support delivered by the SAP Plant Maintenance consultant from KEAAS in optimizing our production and maintenance processes.",
+      "We are highly satisfied with the support delivered by the SAP Plant Maintenance consultant from KEAAS Global Services in optimizing our production and maintenance processes.",
     role: "SAP Plant Maintenance",
     company: "Leitwind",
   },
   {
     featured: false,
     quote:
-      "KEAAS's ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
+      "KEAAS Global Services' ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
     role: "SAP ABAP",
     company: "NTT DATA Middle East",
   },
   {
     featured: false,
     quote:
-      "KEAAS has consistently supplied skilled SAP consultants who are knowledgeable, adaptable, and aligned with our industry-specific requirements.",
+      "KEAAS Global Services has consistently supplied skilled SAP consultants who are knowledgeable, adaptable, and aligned with our industry-specific requirements.",
     role: "SAP Delivery",
     company: "Enterprise clients",
   },
@@ -448,7 +448,7 @@ export const insights = [
     body: [
       "SAP transformation is no longer a single-suite conversation. System Integrators are being asked to deliver cleaner cores, more disciplined extensions and faster value stories — often with the same delivery bench they had three years ago.",
       "Three forces will define 2026 and beyond. First, the move from monolithic customisation to a clean core with a governed side-by-side estate. Second, the rise of industry-specific process depth as a differentiator, not a commodity. Third, a structural shortage of consultants who have actually closed a books cycle, not merely configured a chart of accounts.",
-      "KEAAS works with global SI partners who treat expertise as infrastructure. The firms that win the next wave of SAP programmes will not be those with the largest bench. They will be those who can place the right specialist or complete team into the right workstream at the exact moment the programme needs them.",
+      "KEAAS Global Services works with global SI partners who treat expertise as infrastructure. The firms that win the next wave of SAP programmes will not be those with the largest bench. They will be those who can place the right specialist or complete team into the right workstream at the exact moment the programme needs them.",
       "For delivery leaders, the implication is practical. Build a thinner permanent core. Surround it with curated, on-demand specialists and accountable teams. Measure them by the movement of the plan, not by the hours they occupy a seat.",
     ],
   },
@@ -463,7 +463,7 @@ export const insights = [
       "Extended teams fail when they are treated as overflow. They succeed when they inherit your operating system.",
     body: [
       "Most extended-team models fail for a simple reason: the expert is asked to deliver inside a system they have not been shown. Access arrives late. Rituals are implied. Decision rights stay unspoken.",
-      "High-performing SI programmes treat KEAAS experts as an extension of the delivery system, not as a contractor parked at the edge. That means a named counterpart, a defined workstream, a shared RAID log and a two-week onboarding that is as disciplined as a client kick-off.",
+      "High-performing SI programmes treat KEAAS Global Services experts as an extension of the delivery system, not as a contractor parked at the edge. That means a named counterpart, a defined workstream, a shared RAID log and a two-week onboarding that is as disciplined as a client kick-off.",
       "The cultural test is equally precise. An expert who has worked inside regulated, multi-country programmes already understands how an SI speaks to a client. Screening for that fluency is as important as screening for the module.",
       "When the operating system is shared, extended teams stop being a capacity patch and become a growth instrument.",
     ],
@@ -479,7 +479,7 @@ export const insights = [
       "Geography still matters. Time zones, language and regulatory context decide whether expertise lands — or merely arrives.",
     body: [
       "Global talent is not the same as interchangeable talent. A controlling specialist in Mumbai can be exactly right for a Frankfurt close — if the time-zone overlap, the language of the steering pack and the local statutory context have been designed for.",
-      "Experts-as-a-Service works when the matching logic is geographic as well as technical. KEAAS connects specialists and delivery teams through hubs in Chennai, the United Arab Emirates and Texas.",
+      "Experts-as-a-Service works when the matching logic is geographic as well as technical. KEAAS Global Services connects specialists and delivery teams through hubs in Chennai, the United Arab Emirates and Texas.",
       "The commercial effect is quiet and material. Programmes stop paying for the wrong seniority in the wrong city. Clients stop feeling the seam between the SI team and the specialist who joined in week six.",
       "Local impact is the point. Global reach is only the method.",
     ],

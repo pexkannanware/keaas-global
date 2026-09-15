@@ -10,7 +10,7 @@ export function About() {
         <div className="grid items-start gap-14 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <Reveal>
-              <Eyebrow>About KEAAS</Eyebrow>
+              <Eyebrow>About KEAAS Global Services</Eyebrow>
               <p className="mt-4 inline-flex border-l-2 border-keaas pl-3 text-xs font-semibold tracking-[0.12em] text-ink-2 uppercase">
                 A Kannanware Group company
               </p>
@@ -26,12 +26,12 @@ export function About() {
                 {aboutIntro}
               </p>
               <p className="mt-5 max-w-xl text-base leading-8 text-muted">
-                KEAAS staffs System Integrator programmes with specialist SAP
+                KEAAS Global Services staffs System Integrator programmes with specialist SAP
                 talent and complete delivery teams. We integrate with your
                 teams to accelerate delivery, reduce risk and maximise value.
               </p>
               <div className="mt-10">
-                <Button href="/about">Discover KEAAS</Button>
+                <Button href="/about">Discover KEAAS Global Services</Button>
               </div>
             </Reveal>
           </div>

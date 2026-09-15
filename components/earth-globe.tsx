@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useTexture } from "@react-three/drei";
+import { Html, OrbitControls, useTexture } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
@@ -59,6 +59,32 @@ function arcCurve(from: THREE.Vector3, to: THREE.Vector3) {
   const mid = from.clone().add(to).multiplyScalar(0.5);
   mid.normalize().multiplyScalar(RADIUS + from.distanceTo(to) * 0.38);
   return new THREE.QuadraticBezierCurve3(from, mid, to);
+}
+
+function HubLabel({ text }: { text: string }) {
+  const groupRef = useRef<THREE.Group>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const worldPosition = useMemo(() => new THREE.Vector3(), []);
+  const surfaceNormal = useMemo(() => new THREE.Vector3(), []);
+  const toCamera = useMemo(() => new THREE.Vector3(), []);
+
+  useFrame(({ camera }) => {
+    if (!labelRef.current || !groupRef.current) return;
+    groupRef.current.getWorldPosition(worldPosition);
+    surfaceNormal.copy(worldPosition).normalize();
+    toCamera.copy(camera.position).sub(worldPosition).normalize();
+    labelRef.current.style.opacity = surfaceNormal.dot(toCamera) > 0.12 ? "1" : "0";
+  });
+
+  return (
+    <group ref={groupRef}>
+      <Html center distanceFactor={7} position={[0, -0.08, 0]} style={{ pointerEvents: "none" }}>
+        <span ref={labelRef} className="globe-hub-label">
+          {text}
+        </span>
+      </Html>
+    </group>
+  );
 }
 
 function Earth({ spinning }: { spinning: boolean }) {
@@ -170,6 +196,11 @@ function Earth({ spinning }: { spinning: boolean }) {
               />
             </mesh>
           ) : null}
+          {location.hub ? (
+            <HubLabel
+              text={id === "chennai" ? "India · Chennai" : id === "uae" ? "UAE" : "USA · Texas"}
+            />
+          ) : null}
         </group>
       ))}
       {routes.map(([from, to, delay]) => (
@@ -198,6 +229,9 @@ function Trail({
 }) {
   const comet = useRef<THREE.Mesh>(null);
   const line = useRef<THREE.Mesh>(null);
+  const travelerStart = useMemo(() => new THREE.Color("#15c9d7"), []);
+  const travelerEnd = useMemo(() => new THREE.Color("#b6ed4d"), []);
+  const travelerColor = useMemo(() => new THREE.Color(), []);
   const curve = useMemo(
     () =>
       arcCurve(
@@ -207,11 +241,11 @@ function Trail({
     [from, to],
   );
   const tube = useMemo(
-    () => new THREE.TubeGeometry(curve, 96, 0.003, 5, false),
+    () => new THREE.TubeGeometry(curve, 96, 0.0028, 6, false),
     [curve],
   );
   const guide = useMemo(
-    () => new THREE.TubeGeometry(curve, 96, 0.0012, 4, false),
+    () => new THREE.TubeGeometry(curve, 96, 0.0011, 5, false),
     [curve],
   );
 
@@ -220,38 +254,41 @@ function Trail({
     const t = ((clock.elapsedTime + delay) % 7.4) / 7.4;
     const draw = t < 0.78 ? t / 0.78 : 1;
     const fade = t < 0.82 ? 1 : Math.max(0, 1 - (t - 0.82) / 0.18);
+    const pulse = 0.78 + Math.sin(clock.elapsedTime * 8.5 + delay) * 0.22;
     tube.setDrawRange(0, Math.floor(tube.attributes.position.count * draw));
     comet.current.position.copy(curve.getPointAt(Math.min(0.999, draw)));
     comet.current.visible = fade > 0.05;
     const mat = line.current.material as THREE.MeshBasicMaterial;
-    mat.opacity = 0.82 * fade;
+    mat.opacity = 0.52 * fade;
     const cmat = comet.current.material as THREE.MeshBasicMaterial;
-    cmat.opacity = fade;
+    travelerColor.lerpColors(travelerStart, travelerEnd, (Math.sin(t * Math.PI * 2) + 1) / 2);
+    cmat.color.copy(travelerColor);
+    cmat.opacity = fade * pulse;
   });
 
   return (
     <group>
       <mesh geometry={guide}>
         <meshBasicMaterial
-          color="#d3130f"
+          color="#087f91"
           transparent
-          opacity={0.3}
+          opacity={0.58}
           depthWrite={false}
           toneMapped={false}
         />
       </mesh>
       <mesh ref={line} geometry={tube}>
         <meshBasicMaterial
-          color="#ef1b16"
+          color="#075c6b"
           transparent
-          opacity={0.9}
+          opacity={0.98}
           depthWrite={false}
           toneMapped={false}
         />
       </mesh>
       <mesh ref={comet}>
-        <sphereGeometry args={[0.014, 10, 10]} />
-        <meshBasicMaterial color="#ff2a24" transparent toneMapped={false} />
+        <sphereGeometry args={[0.011, 10, 10]} />
+        <meshBasicMaterial color="#15c9d7" transparent toneMapped={false} />
       </mesh>
     </group>
   );
@@ -296,7 +333,7 @@ export function EarthGlobe() {
           const lose = (event: Event) => event.preventDefault();
           gl.domElement.addEventListener("webglcontextlost", lose, false);
         }}
-        aria-label="KEAAS delivery hubs in Chennai, the United Arab Emirates and Texas connecting to the world"
+        aria-label="KEAAS Global Services delivery hubs in Chennai, the United Arab Emirates and Texas connecting to the world"
       >
         <Suspense fallback={null}>
           <Scene spinning={!reduce} />

@@ -186,7 +186,33 @@ h3,
 .client-ticker-track {
   display: flex;
   width: max-content;
+  cursor: grab;
   animation: client-ticker 52s linear infinite;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.client-ticker-track:active,
+.client-ticker.is-interacting .client-ticker-track {
+  cursor: grabbing;
+}
+
+.client-ticker.is-interacting .client-ticker-track {
+  animation-play-state: paused;
+}
+
+.globe-hub-label {
+  display: block;
+  color: rgba(102, 102, 102, 0.52);
+  padding: 0;
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 180ms ease-out;
 }
 
 .client-ticker:hover .client-ticker-track,

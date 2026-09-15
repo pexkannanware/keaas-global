@@ -5,9 +5,9 @@ import { OutcomeCards } from "@/components/sections/outcome-cards";
 import { testimonials } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Why KEAAS",
+  title: "Why KEAAS Global Services",
   description:
-    "How KEAAS improves SAP operating costs, productivity and ROI for System Integrators and their clients.",
+    "How KEAAS Global Services improves SAP operating costs, productivity and ROI for System Integrators and their clients.",
 };
 
 export default function WhyPage() {
@@ -16,8 +16,8 @@ export default function WhyPage() {
   return (
     <>
       <PageIntro
-        eyebrow="Why KEAAS"
-        title="Why System Integrators choose KEAAS."
+        eyebrow="Why KEAAS Global Services"
+        title="Why System Integrators choose KEAAS Global Services."
       >
         Faster access to scarce SAP expertise — without months of recruitment.
       </PageIntro>

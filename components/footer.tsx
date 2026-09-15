@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Linkedin } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { company } from "@/lib/data";
 
@@ -84,12 +85,21 @@ export function Footer() {
           >
             {company.email}
           </a>
+          <a
+            href="https://www.linkedin.com/company/143782054"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-keaas"
+          >
+            <Linkedin className="h-4 w-4" aria-hidden="true" />
+            LinkedIn
+          </a>
         </div>
       </div>
 
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-6 py-5 text-[0.75rem] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-14">
-          <p>© {new Date().getFullYear()} KEAAS. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KEAAS Global Services. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-ink">
               Privacy Policy

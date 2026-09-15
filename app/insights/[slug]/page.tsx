@@ -52,7 +52,7 @@ export default async function InsightPage({ params }: Props) {
           </p>
         ))}
         <div className="mt-12">
-          <Button href="/contact">Talk to KEAAS</Button>
+          <Button href="/contact">Talk to KEAAS Global Services</Button>
         </div>
       </Container>
     </article>

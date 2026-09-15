@@ -25,25 +25,25 @@ export function Hero() {
       />
       <Container className="relative grid min-h-[100svh] items-center pt-32 pb-10 sm:pt-36 sm:pb-14 lg:min-h-[760px] lg:grid-cols-12 lg:pt-28 lg:pb-16">
         <div className="relative z-10 lg:col-span-5 xl:col-span-5">
-          <p className="text-xs font-semibold text-keaas">Experts as a Service (EaaS)</p>
+          <p className="text-xs font-semibold tracking-[0.12em] text-ink uppercase">
+            Experts as a Service for System Integrators
+          </p>
           <h1
             id="hero-heading"
             className="mt-4 text-[3.55rem] leading-[0.91] font-semibold tracking-[-0.055em] text-ink sm:text-[4.65rem] lg:text-[5rem] xl:text-[5.55rem]"
           >
-            Expertise
-            <br />
-            <span className="text-keaas">Delivered.</span>
+            <span className="text-keaas">Expertise Delivered.</span>
           </h1>
           <p className="mt-6 max-w-sm text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            On-demand SAP experts and complete delivery teams for System
-            Integrators worldwide.
+            Flexible enterprise technology expertise that helps System Integrators
+            scale delivery capacity on demand.
           </p>
           <div className="mt-8 flex flex-col gap-3 min-[430px]:flex-row">
             <Link
               href="/approach"
               className="inline-flex min-h-12 items-center justify-center border border-keaas bg-keaas px-7 text-[0.68rem] font-semibold tracking-[0.08em] text-white uppercase transition-colors hover:bg-keaas-deep"
             >
-              How KEAAS works
+              Experts as a Service
             </Link>
             <Link
               href="/contact"

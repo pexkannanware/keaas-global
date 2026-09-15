@@ -5,15 +5,15 @@ import { AboutStats } from "@/components/sections/about-stats";
 import { aboutIntro } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About KEAAS",
+  title: "About KEAAS Global Services",
   description:
-    "KEAAS provides specialist SAP talent and complete delivery teams to System Integrators.",
+    "KEAAS Global Services provides specialist SAP talent and complete delivery teams to System Integrators.",
 };
 
 export default function AboutPage() {
   return (
     <>
-      <PageIntro eyebrow="About KEAAS" title="Knowledge & Expertise as a Service">
+      <PageIntro eyebrow="About KEAAS Global Services" title="Knowledge & Expertise as a Service">
         {aboutIntro}
       </PageIntro>
 
@@ -34,12 +34,12 @@ export default function AboutPage() {
         </Reveal>
         <div className="lg:col-span-5 lg:col-start-8">
           <p className="text-lg leading-8 text-ink-2">
-            KEAAS exists for a precise reason: System Integrators are asked to
+            KEAAS Global Services exists for a precise reason: System Integrators are asked to
             deliver more specialised SAP work, on tighter plans, with benches
             that cannot hold every scarce skill permanently.
           </p>
           <p className="mt-6 text-base leading-8 text-muted">
-            KEAAS staffs System Integrator programmes with curated SAP
+            KEAAS Global Services staffs System Integrator programmes with curated SAP
             specialists — or complete teams — that have already delivered
             inside enterprise ecosystems. We hold ourselves to the same
             operating discipline as the SI partner they join.

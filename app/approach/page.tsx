@@ -23,7 +23,7 @@ export default function ApproachPage() {
               A delivery model built for System Integrator programmes.
             </h2>
             <p className="mt-6 text-base leading-8 text-muted">
-              KEAAS does not drop résumés into your inbox. We run a structured
+              KEAAS Global Services does not drop résumés into your inbox. We run a structured
               partner-in-progress model — from understanding the requirement
               through deployment and ongoing quality governance — so every
               expert arrives ready to operate inside your delivery system.

@@ -7,11 +7,11 @@ export default function PrivacyPage() {
   return (
     <>
       <PageIntro eyebrow="Legal" title="Privacy Policy">
-        How KEAAS handles information submitted through this website.
+        How KEAAS Global Services handles information submitted through this website.
       </PageIntro>
       <Container className="max-w-3xl space-y-6 py-16 text-base leading-8 text-muted">
         <p>
-          KEAAS collects only the information you choose to provide through the
+          KEAAS Global Services collects only the information you choose to provide through the
           contact form — typically your name, work email, company, telephone
           number and a description of the expertise you require.
         </p>

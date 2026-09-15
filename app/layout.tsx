@@ -19,18 +19,22 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "KEAAS — Expertise Delivered.",
-    template: "%s · KEAAS",
+    default: "KEAAS Global Services — Expertise Delivered.",
+    template: "%s · KEAAS Global Services",
   },
   description: company.description,
+  icons: {
+    icon: "/KEAAS-k-favicon.png",
+    apple: "/KEAAS-k-favicon.png",
+  },
   metadataBase: new URL("https://keaas.com"),
   openGraph: {
-    title: "KEAAS — Expertise Delivered.",
+    title: "KEAAS Global Services — Expertise Delivered.",
     description: company.description,
     type: "website",
     locale: "en_GB",
-    siteName: "KEAAS",
-    images: [{ url: "/KEAAS-logo.png", alt: "KEAAS Global" }],
+    siteName: "KEAAS Global Services",
+    images: [{ url: "/KEAAS-web-site.png", alt: "KEAAS Global Services" }],
   },
 };
 

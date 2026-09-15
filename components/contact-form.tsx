@@ -18,7 +18,7 @@ export function ContactForm() {
       <div className="py-8">
         <p className="eyebrow text-keaas">Request received</p>
         <p className="mt-4 text-2xl tracking-tight text-ink">
-          Thank you. A KEAAS partner will respond within one business day.
+          Thank you. A KEAAS Global Services partner will respond within one business day.
         </p>
       </div>
     );
@@ -44,7 +44,7 @@ export function ContactForm() {
     }
 
     setState({ ok: false, error: "", pending: true });
-    const subject = `KEAAS enquiry from ${name}`;
+    const subject = `KEAAS Global Services enquiry from ${name}`;
     const body = [
       `Name: ${name}`,
       `Work email: ${email}`,

@@ -41,7 +41,7 @@ export function Services() {
               expertise.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-muted">
-              KEAAS staffs System Integrator programmes with individual SAP
+              KEAAS Global Services staffs System Integrator programmes with individual SAP
               specialists, compact client pods, or a senior task force — the
               capability you need, without a permanent bench.
             </p>

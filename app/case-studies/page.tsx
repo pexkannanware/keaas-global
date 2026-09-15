@@ -10,7 +10,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       <PageIntro eyebrow="Case Studies" title="Outcomes, not occupancy.">
-        Selected programmes where KEAAS experts joined a System Integrator
+        Selected programmes where KEAAS Global Services experts joined a System Integrator
         team and moved the critical path.
       </PageIntro>
       <Container className="py-20">
