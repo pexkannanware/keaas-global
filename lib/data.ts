@@ -188,7 +188,7 @@ export const leadershipTeam: LeadershipMember[] = [
   {
     name: "Sudha",
     role: "Managing Director",
-    image: "/images/leadership/sudha.png",
+    image: "/images/leadership/sudha.jpeg",
   },
   {
     name: "Sivaranjani Sivakumar",

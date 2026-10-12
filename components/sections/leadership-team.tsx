@@ -13,18 +13,18 @@ function initials(name: string) {
 
 export function LeadershipTeam() {
   return (
-    <ul className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {leadershipTeam.map((person, i) => (
-        <li key={person.name} className="bg-paper">
+        <li key={person.name}>
           <Reveal delay={i * 0.08} className="h-full">
-            <article className="group flex h-full flex-col">
-              <div className="img-reveal relative aspect-[4/5] overflow-hidden bg-mist">
+            <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper p-2 shadow-[0_8px_30px_rgba(17,17,17,0.045)] transition-shadow duration-300 hover:shadow-[0_16px_42px_rgba(17,17,17,0.11)]">
+              <div className="img-reveal relative aspect-[4/5] overflow-hidden rounded-xl bg-mist">
                 {person.image ? (
                   <Image
                     src={person.image}
                     alt={`Portrait of ${person.name}, ${person.role} at KEAAS Global Services`}
                     fill
-                    className="object-cover grayscale-[15%] transition-all duration-500 group-hover:grayscale-0"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   />
                 ) : (
@@ -35,7 +35,7 @@ export function LeadershipTeam() {
                   </div>
                 )}
               </div>
-              <div className="border-t border-line px-6 py-6">
+              <div className="px-4 pb-4 pt-5">
                 <h3 className="text-lg font-medium tracking-tight text-ink">
                   {person.name}
                 </h3>
