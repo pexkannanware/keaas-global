@@ -56,7 +56,7 @@ export function ContactForm() {
       message,
     ].join("\n");
 
-    window.location.href = `mailto:Keaasglobal@kannanware.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:info@keaasglobal.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setState({ ok: true, error: "", pending: false });
   }
 

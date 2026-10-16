@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Button, Container, PageIntro } from "@/components/ui";
 import { CoverageGrid } from "@/components/sections/coverage-grid";
 
-export const metadata: Metadata = {
-  title: "Domain Expertise",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "SAP Domain Expertise",
+  description:
+    "SAP domain expertise from KEAAS Global Services across FICO, Treasury, MM, SD, PP, PM, ABAP and BTP, staffed as one bench for System Integrators.",
+  path: "/experts",
+  keywords: ["SAP FICO consultants", "SAP Treasury consultants", "SAP MM SD consultants", "SAP PP consultants", "SAP PM consultants", "SAP ABAP developers", "SAP BTP consultants"],
+});
 
 export default function ExpertsPage() {
   return (

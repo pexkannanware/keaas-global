@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Button, Container } from "@/components/ui";
 import { insights } from "@/lib/data";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -14,7 +15,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = insights.find((item) => item.slug === slug);
   if (!article) return {};
-  return { title: article.title, description: article.excerpt };
+  return pageMetadata({
+    title: article.title,
+    description: article.excerpt,
+    path: `/insights/${article.slug}`,
+    keywords: [article.category, "SAP insights"],
+    type: "article",
+  });
 }
 
 export default async function InsightPage({ params }: Props) {

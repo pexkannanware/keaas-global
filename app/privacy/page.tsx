@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Container, PageIntro } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Privacy Policy" };
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy",
+  description:
+    "How KEAAS Global Services collects, uses and protects information submitted through the keaasglobal.com website.",
+  path: "/privacy",
+  keywords: [],
+});
 
 export default function PrivacyPage() {
   return (
@@ -27,7 +34,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           To request access, correction or deletion of information you have
-          submitted, write to Keaasglobal@kannanware.com.
+          submitted, write to info@keaasglobal.com.
         </p>
       </Container>
     </>

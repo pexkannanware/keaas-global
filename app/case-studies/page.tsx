@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Button, Container, PageIntro, Reveal } from "@/components/ui";
 import { caseStudies } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Case Studies",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "SAP Case Studies",
+  description:
+    "SAP case studies from KEAAS Global Services: how our experts joined System Integrator teams to recover S/4HANA workstreams and accelerate delivery.",
+  path: "/case-studies",
+  keywords: ["SAP case studies", "S/4HANA project recovery", "SAP implementation success"],
+});
 
 export default function CaseStudiesPage() {
   return (

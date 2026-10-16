@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Button, Container, PageIntro } from "@/components/ui";
 import { services } from "@/lib/data";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -13,7 +14,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
   if (!service) return {};
-  return { title: service.title, description: service.summary };
+  return pageMetadata({
+    title: service.title,
+    description: service.summary,
+    path: `/services/${service.slug}`,
+    keywords: [service.title, "SAP implementation support", "SAP PrimeCare AMS"],
+  });
 }
 
 export default async function ServicePage({ params }: Props) {

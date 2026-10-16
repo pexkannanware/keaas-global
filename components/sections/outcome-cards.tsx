@@ -4,7 +4,7 @@ import { whyOutcomes } from "@/lib/data";
 export function OutcomeCards() {
   return (
     <Reveal>
-      <div className="grid items-stretch gap-5 md:grid-cols-3">
+      <div className="grid items-stretch gap-5 lg:grid-cols-3">
         {whyOutcomes.map((item) => (
           <article
             key={item.stat}

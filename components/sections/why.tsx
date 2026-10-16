@@ -47,11 +47,11 @@ export function Why() {
             <Reveal className="lg:col-span-12">
               <blockquote className="relative overflow-hidden bg-ink px-8 py-10 text-white sm:px-12 sm:py-14">
                 <Quote
-                  className="absolute top-8 right-8 h-16 w-16 text-white/10"
+                  className="pointer-events-none absolute top-5 right-5 h-10 w-10 text-white/10 sm:top-8 sm:right-8 sm:h-16 sm:w-16"
                   strokeWidth={1}
                   aria-hidden="true"
                 />
-                <p className="display max-w-4xl text-2xl leading-snug sm:text-3xl md:text-[2.15rem] md:leading-[1.25]">
+                <p className="display relative max-w-4xl pr-6 text-xl leading-snug sm:pr-16 sm:text-3xl md:text-[2.15rem] md:leading-[1.25]">
                   {featured.quote}
                 </p>
                 <footer className="mt-10 flex flex-wrap items-baseline gap-x-4 gap-y-1">

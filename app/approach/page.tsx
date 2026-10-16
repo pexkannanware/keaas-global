@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Button, Container, PageIntro, Reveal } from "@/components/ui";
 import { Process } from "@/components/sections/process";
 import { approachCommitments, approachPrinciples } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Approach",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Our Approach",
+  description:
+    "How KEAAS Global Services delivers SAP talent: requirement understanding, resource mapping, technical screening, client interviews, onboarding and weekly quality governance.",
+  path: "/approach",
+  keywords: ["SAP resource onboarding", "SAP consultant screening", "SAP delivery governance"],
+});
 
 export default function ApproachPage() {
   return (
@@ -30,7 +35,7 @@ export default function ApproachPage() {
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {approachPrinciples.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.06}>
                 <article className="flex h-full flex-col border border-line bg-paper p-8">

@@ -6,7 +6,7 @@ export function AboutStats() {
     <Reveal>
       <div className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-5">
         {aboutStats.map((stat) => (
-          <article key={stat.value} className="flex h-full flex-col bg-paper px-6 py-8">
+          <article key={stat.value} className="flex h-full flex-col bg-paper px-6 py-8 sm:last:odd:col-span-2 lg:last:odd:col-span-1">
             <p className="display flex h-14 items-end text-4xl leading-none tracking-[-0.04em] text-keaas tabular-nums sm:text-5xl">
               {stat.value}
             </p>

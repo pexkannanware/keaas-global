@@ -3,6 +3,7 @@ import { Manrope, Space_Grotesk } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { company } from "@/lib/data";
+import { baseKeywords, ogImage, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -23,11 +24,15 @@ export const metadata: Metadata = {
     template: "%s · KEAAS Global Services",
   },
   description: company.description,
+  keywords: baseKeywords,
+  applicationName: siteName,
   icons: {
     icon: "/KEAAS-k-favicon.png",
     apple: "/KEAAS-k-favicon.png",
   },
-  metadataBase: new URL("https://keaas.com"),
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   verification: {
     google: "ZFXAYd8ELTFvFDtZfeB70bv7zEpLHomAsckD5RCwJ1Y",
   },
@@ -36,8 +41,32 @@ export const metadata: Metadata = {
     description: company.description,
     type: "website",
     locale: "en_GB",
-    siteName: "KEAAS Global Services",
-    images: [{ url: "/KEAAS-web-site.png", alt: "KEAAS Global Services" }],
+    siteName,
+    url: "/",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KEAAS Global Services (KEAAS) | SAP Experts",
+    description: company.description,
+    images: [ogImage.url],
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  alternateName: ["KEAAS", company.formal],
+  url: siteUrl,
+  logo: `${siteUrl}/KEAAS-k-favicon.png`,
+  email: company.email,
+  description: company.description,
+  sameAs: ["https://www.linkedin.com/company/143782054"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: company.email,
   },
 };
 
@@ -48,6 +77,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col overflow-x-clip font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

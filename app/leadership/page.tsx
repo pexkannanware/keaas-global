@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Button, Container, Eyebrow, PageIntro, Reveal } from "@/components/ui";
 import { LeadershipTeam } from "@/components/sections/leadership-team";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Leadership",
-};
+  description:
+    "Meet the leadership team of KEAAS Global Services, guiding SAP expertise and delivery quality for System Integrators worldwide.",
+  path: "/leadership",
+  keywords: ["KEAAS leadership", "KEAAS Global Services team"],
+});
 
 export default function LeadershipPage() {
   return (

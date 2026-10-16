@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Container, PageIntro } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Terms of Service" };
+export const metadata: Metadata = pageMetadata({
+  title: "Terms of Service",
+  description:
+    "Terms and conditions governing use of the KEAAS Global Services website.",
+  path: "/terms",
+  keywords: [],
+});
 
 export default function TermsPage() {
   return (
@@ -26,7 +33,7 @@ export default function TermsPage() {
           for commercial use without written consent.
         </p>
         <p>
-          Questions about these terms may be sent to Keaasglobal@kannanware.com.
+          Questions about these terms may be sent to info@keaasglobal.com.
         </p>
       </Container>
     </>

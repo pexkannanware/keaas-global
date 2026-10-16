@@ -147,19 +147,8 @@ h3,
   }
 }
 
-@keyframes client-ticker {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .client-ticker-viewport {
   position: relative;
-  overflow-x: clip;
-  overflow-y: visible;
 }
 
 .client-ticker-viewport::before,
@@ -167,7 +156,7 @@ h3,
   position: absolute;
   top: 0;
   z-index: 2;
-  width: 4rem;
+  width: 3rem;
   height: 100%;
   pointer-events: none;
   content: "";
@@ -183,22 +172,13 @@ h3,
   background: linear-gradient(270deg, var(--paper), transparent);
 }
 
-.client-ticker-track {
-  display: flex;
-  width: max-content;
-  cursor: grab;
-  animation: client-ticker 52s linear infinite;
-  touch-action: pan-y;
-  user-select: none;
+.client-ticker-scroller {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.client-ticker-track:active,
-.client-ticker.is-interacting .client-ticker-track {
-  cursor: grabbing;
-}
-
-.client-ticker.is-interacting .client-ticker-track {
-  animation-play-state: paused;
+.client-ticker-scroller::-webkit-scrollbar {
+  display: none;
 }
 
 .globe-hub-label {

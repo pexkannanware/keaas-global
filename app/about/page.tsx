@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { Button, Container, PageIntro, Reveal } from "@/components/ui";
 import { AboutStats } from "@/components/sections/about-stats";
 import { aboutIntro } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About KEAAS Global Services",
   description:
-    "KEAAS Global Services provides specialist SAP talent and complete delivery teams to System Integrators.",
-};
+    "KEAAS Global Services (Knowledge & Expertise as a Service) provides vetted SAP functional and technical consultants and complete delivery teams to System Integrators worldwide.",
+  path: "/about",
+  keywords: ["about KEAAS", "Knowledge & Expertise as a Service", "SAP consulting company"],
+});
 
 export default function AboutPage() {
   return (

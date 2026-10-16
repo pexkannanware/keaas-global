@@ -2,7 +2,7 @@ export const company = {
   name: "KEAAS Global Services",
   formal: "Knowledge & Expertise as a Service",
   tagline: "Expertise Delivered.",
-  email: "Keaasglobal@kannanware.com",
+  email: "info@keaasglobal.com",
   description:
     "KEAAS Global Services (KEAAS) provides vetted SAP consultants, expert pods and rapid-response teams to System Integrators worldwide.",
 };
@@ -30,25 +30,7 @@ export const nav = [
 ] as const;
 
 export const clients = [
-  { name: "GMMCO", src: "/images/clients/gmmco-hd.png" },
-  { name: "Choithrams", src: "/images/clients/choithrams-hd.png" },
-  {
-    name: "Dhaksha Drones",
-    src: "/images/clients/dhaksha-hd.png",
-    testimonial:
-      "KEAAS Global Services' SAP MM & SD consultants provided excellent support across procurement, inventory, sales, and distribution processes with a clear understanding of our business needs.",
-  },
-  {
-    name: "Leitwind",
-    src: "/images/clients/leitwind-hd.png",
-    testimonial:
-      "We are highly satisfied with the support delivered by the SAP Plant Maintenance consultant from KEAAS Global Services in optimizing our production and maintenance processes.",
-  },
-  { name: "JK Fenner", src: "/images/clients/jk-fenner-hd.png" },
-  { name: "Alghanim Industries", src: "/images/clients/alghanim-hd.png" },
-  { name: "Atos", src: "/images/clients/atos.png" },
   { name: "Deloitte", src: "/images/clients/deloitte-new.png" },
-  { name: "Dollar General", src: "/images/clients/dollar-general.png" },
   { name: "Wipro", src: "/images/clients/wipro-new.png" },
   {
     name: "NTT DATA",
@@ -56,14 +38,7 @@ export const clients = [
     testimonial:
       "KEAAS Global Services' ABAP consultant delivered scalable, innovative, and business-focused solutions that enhanced our SAP environment.",
   },
-  {
-    name: "Parrys",
-    src: "/images/clients/parrys-new.png",
-    testimonial:
-      "We appreciate KEAAS Global Services' SAP FICO and Treasury consultant for their strong domain expertise, professionalism, and timely support in managing our financial operations.",
-  },
   { name: "SAP", src: "/images/clients/sap.png" },
-  { name: "Shell", src: "/images/clients/shell.png" },
   { name: "IBM", src: "/images/clients/ibm-new.png" },
 ] as const;
 

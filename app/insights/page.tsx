@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, PageIntro, Reveal } from "@/components/ui";
 import { insights } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Insights",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "SAP Insights",
+  description:
+    "SAP insights for System Integrator leaders: SAP trends for 2026, building high-performing extended teams and the Experts-as-a-Service advantage.",
+  path: "/insights",
+  keywords: ["SAP trends 2026", "SAP insights", "SAP extended teams"],
+});
 
 export default function InsightsPage() {
   return (

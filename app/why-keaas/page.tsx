@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Quote } from "lucide-react";
 import { Container, PageIntro, Reveal } from "@/components/ui";
 import { OutcomeCards } from "@/components/sections/outcome-cards";
 import { testimonials } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Why KEAAS Global Services",
   description:
-    "How KEAAS Global Services improves SAP operating costs, productivity and ROI for System Integrators and their clients.",
-};
+    "Why System Integrators choose KEAAS Global Services: SAP certified consultants, multi-regional industry experts, SLA adherence and lower SAP operating costs with higher ROI.",
+  path: "/why-keaas",
+  keywords: ["why KEAAS", "SAP certified consultants", "SAP outsourcing partner", "SAP cost optimisation"],
+});
 
 export default function WhyPage() {
   const [featured, ...rest] = testimonials;
@@ -38,11 +41,11 @@ export default function WhyPage() {
             <Reveal className="lg:col-span-12">
               <blockquote className="relative overflow-hidden bg-ink px-8 py-10 text-white sm:px-12 sm:py-14">
                 <Quote
-                  className="absolute top-8 right-8 h-16 w-16 text-white/10"
+                  className="pointer-events-none absolute top-5 right-5 h-10 w-10 text-white/10 sm:top-8 sm:right-8 sm:h-16 sm:w-16"
                   strokeWidth={1}
                   aria-hidden="true"
                 />
-                <p className="display max-w-4xl text-2xl leading-snug sm:text-3xl">
+                <p className="display relative max-w-4xl pr-6 text-xl leading-snug sm:pr-16 sm:text-3xl">
                   {featured.quote}
                 </p>
                 <footer className="mt-10 flex flex-wrap items-baseline gap-x-4 gap-y-1">

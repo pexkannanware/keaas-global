@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Button, Container, PageIntro, Reveal } from "@/components/ui";
 import { careers } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Careers",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "SAP Careers",
+  description:
+    "Join KEAAS Global Services. Explore SAP consultant, integration architect and partner roles on enterprise SAP programmes for global System Integrators.",
+  path: "/careers",
+  keywords: ["SAP jobs", "SAP consultant jobs", "SAP careers", "SAP FICO jobs"],
+});
 
 export default function CareersPage() {
   return (

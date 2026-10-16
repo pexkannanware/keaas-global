@@ -26,7 +26,7 @@ export function Insights() {
               Enterprise Delivery Forward.
             </h2>
           </Reveal>
-          <Button href="/insights" className="self-start md:self-auto">
+          <Button href="/insights" className="shrink-0 self-start whitespace-nowrap md:self-auto">
             View all insights
           </Button>
         </div>

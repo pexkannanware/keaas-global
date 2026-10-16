@@ -2,29 +2,46 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { preload } from "react-dom";
+import { GlobePlaceholder } from "@/components/globe-placeholder";
 import { Container } from "@/components/ui";
+
+const EARTH_TEXTURE = "/images/earth-dark.jpg";
+
+function GlobeLoading() {
+  return (
+    <div className="relative h-full min-h-[320px] w-full">
+      <GlobePlaceholder />
+    </div>
+  );
+}
 
 const EarthGlobe = dynamic(
   () => import("@/components/earth-globe").then((mod) => mod.EarthGlobe),
-  {
-    ssr: false,
-    loading: () => <div className="h-full min-h-[320px] w-full bg-transparent" />,
-  },
+  { ssr: false, loading: GlobeLoading },
 );
 
 export function Hero() {
+  // Start fetching the globe texture with the HTML instead of after the 3D bundle loads.
+  // crossOrigin matches three.js's TextureLoader so the browser reuses this request.
+  preload(`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${EARTH_TEXTURE}`, {
+    as: "image",
+    crossOrigin: "anonymous",
+    fetchPriority: "high",
+  });
+
   return (
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden bg-paper"
+      className="relative isolate overflow-hidden bg-paper"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_48%,rgba(180,0,0,0.035),transparent_40%)]"
       />
-      <Container className="relative grid min-h-[100svh] items-center pt-32 pb-10 sm:pt-36 sm:pb-14 lg:min-h-[760px] lg:grid-cols-12 lg:pt-28 lg:pb-16">
-        <div className="relative z-10 lg:col-span-5 xl:col-span-5">
+      <Container className="relative grid min-h-[100svh] items-center pt-24 pb-10 sm:pt-28 sm:pb-14 lg:min-h-[760px] lg:grid-cols-12 lg:pt-28 lg:pb-16">
+        <div className="relative z-10 min-w-0 lg:col-span-5 xl:col-span-5">
           <p className="text-xs font-semibold tracking-[0.12em] text-ink uppercase">
             Experts as a Service for System Integrators
           </p>
@@ -54,8 +71,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative -mx-14 mt-4 h-[350px] min-[430px]:-mx-20 min-[430px]:h-[430px] sm:-mx-24 sm:h-[500px] lg:absolute lg:inset-y-[8%] lg:right-[-7%] lg:mt-0 lg:h-auto lg:w-[66%] xl:right-[-6%] xl:w-[65%]">
-          <EarthGlobe />
+        <div className="relative order-first min-w-0 -mx-14 mb-2 h-[350px] min-[430px]:-mx-20 min-[430px]:h-[430px] sm:-mx-24 sm:h-[500px] lg:absolute lg:inset-y-[8%] lg:right-[-7%] lg:order-none lg:mb-0 lg:h-auto lg:w-[66%] xl:right-[-6%] xl:w-[65%]">
+          <EarthGlobe textureUrl={EARTH_TEXTURE} />
         </div>
       </Container>
     </section>

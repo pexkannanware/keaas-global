@@ -40,8 +40,8 @@ const columns = [
 export function Footer() {
   return (
     <footer className="border-t border-line bg-paper">
-      <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 sm:grid-cols-2 sm:px-8 lg:grid-cols-12 lg:gap-14 lg:px-14 lg:py-20">
-        <div className="sm:col-span-2 lg:col-span-4">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 sm:gap-12 sm:px-8 lg:grid-cols-12 lg:gap-14 lg:px-14 lg:py-20">
+        <div className="col-span-2 lg:col-span-4">
           <Logo />
           <p className="mt-6 max-w-sm text-sm leading-7 text-muted">
             {company.description}
@@ -81,7 +81,7 @@ export function Footer() {
           <p className="eyebrow text-ink">Contact</p>
           <a
             href={`mailto:${company.email}`}
-            className="mt-5 inline-block text-sm text-muted transition-colors hover:text-keaas"
+            className="mt-5 block w-fit max-w-full text-sm [overflow-wrap:anywhere] text-muted transition-colors hover:text-keaas"
           >
             {company.email}
           </a>
@@ -89,7 +89,7 @@ export function Footer() {
             href="https://www.linkedin.com/company/143782054"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-keaas"
+            className="mt-4 flex w-fit items-center gap-2 text-sm text-muted transition-colors hover:text-keaas"
           >
             <Linkedin className="h-4 w-4" aria-hidden="true" />
             LinkedIn

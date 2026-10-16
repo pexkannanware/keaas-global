@@ -2,9 +2,10 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls, useTexture } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
+import { GlobePlaceholder } from "@/components/globe-placeholder";
 
 const RADIUS = 1.58;
 
@@ -78,7 +79,14 @@ function HubLabel({ text }: { text: string }) {
 
   return (
     <group ref={groupRef}>
-      <Html center distanceFactor={7} position={[0, -0.08, 0]} style={{ pointerEvents: "none" }}>
+      <Html
+        center
+        distanceFactor={7}
+        position={[0, -0.08, 0]}
+        // drei defaults to a z-index in the millions, which floats labels over the fixed header.
+        zIndexRange={[1, 0]}
+        style={{ pointerEvents: "none" }}
+      >
         <span ref={labelRef} className="globe-hub-label">
           {text}
         </span>
@@ -87,10 +95,18 @@ function HubLabel({ text }: { text: string }) {
   );
 }
 
-function Earth({ spinning }: { spinning: boolean }) {
+function Earth({
+  spinning,
+  textureUrl,
+  onReady,
+}: {
+  spinning: boolean;
+  textureUrl: string;
+  onReady: () => void;
+}) {
   const group = useRef<THREE.Group>(null);
   const spinY = useRef(-1.4);
-  const map = useTexture(publicUrl("/images/earth-dark.jpg"), (tex) => {
+  const map = useTexture(publicUrl(textureUrl), (tex) => {
     tex.colorSpace = THREE.NoColorSpace;
     tex.anisotropy = 8;
   });
@@ -101,6 +117,9 @@ function Earth({ spinning }: { spinning: boolean }) {
     }),
     [map],
   );
+
+  // Runs once the texture has resolved and the globe can actually draw.
+  useEffect(onReady, [onReady]);
 
   useFrame((_, delta) => {
     if (!group.current) return;
@@ -294,13 +313,13 @@ function Trail({
   );
 }
 
-function Scene({ spinning }: { spinning: boolean }) {
+function Scene(props: { spinning: boolean; textureUrl: string; onReady: () => void }) {
   return (
     <>
       <ambientLight intensity={0.95} />
       <hemisphereLight args={["#ffffff", "#e6e6e6", 0.65]} />
       <directionalLight position={[4.5, 2.8, 3.2]} intensity={1.35} color="#ffffff" />
-      <Earth spinning={spinning} />
+      <Earth {...props} />
       <OrbitControls
         makeDefault
         enablePan={false}
@@ -313,8 +332,10 @@ function Scene({ spinning }: { spinning: boolean }) {
   );
 }
 
-export function EarthGlobe() {
+export function EarthGlobe({ textureUrl }: { textureUrl: string }) {
   const reduce = useReducedMotion();
+  const [ready, setReady] = useState(false);
+  const handleReady = useCallback(() => setReady(true), []);
 
   return (
     <div className="relative h-full min-h-[320px] w-full">
@@ -322,12 +343,16 @@ export function EarthGlobe() {
         aria-hidden="true"
         className="pointer-events-none absolute bottom-[9%] left-1/2 h-10 w-[54%] -translate-x-1/2 rounded-[100%] bg-black/8 blur-3xl"
       />
+      {ready ? null : <GlobePlaceholder />}
       <Canvas
-        className="cursor-grab active:cursor-grabbing"
+        className={`cursor-grab transition-opacity duration-700 active:cursor-grabbing ${ready ? "opacity-100" : "opacity-0"}`}
         camera={{ position: [0, 0.08, 5.35], fov: 34 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         resize={{ debounce: 80 }}
+        // Absolutely positioned so the canvas never props open the hero grid; otherwise its
+        // desktop pixel width survives a resize down to mobile until the page is reloaded.
+        style={{ position: "absolute", inset: 0 }}
         onCreated={({ gl }) => {
           gl.setClearColor(0xffffff, 0);
           const lose = (event: Event) => event.preventDefault();
@@ -336,7 +361,7 @@ export function EarthGlobe() {
         aria-label="KEAAS Global Services delivery hubs in Chennai, the United Arab Emirates and Texas connecting to the world"
       >
         <Suspense fallback={null}>
-          <Scene spinning={!reduce} />
+          <Scene spinning={!reduce} textureUrl={textureUrl} onReady={handleReady} />
         </Suspense>
       </Canvas>
       <p className="pointer-events-none absolute right-[12%] bottom-2 hidden text-[0.58rem] tracking-[0.16em] text-muted uppercase sm:block">

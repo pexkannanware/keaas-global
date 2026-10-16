@@ -13,7 +13,7 @@ function initials(name: string) {
 
 export function LeadershipTeam() {
   return (
-    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
       {leadershipTeam.map((person, i) => (
         <li key={person.name}>
           <Reveal delay={i * 0.08} className="h-full">
@@ -35,11 +35,11 @@ export function LeadershipTeam() {
                   </div>
                 )}
               </div>
-              <div className="px-4 pb-4 pt-5">
-                <h3 className="text-lg font-medium tracking-tight text-ink">
+              <div className="px-2 pb-3 pt-4 sm:px-4 sm:pb-4 sm:pt-5">
+                <h3 className="text-base font-medium tracking-tight text-ink sm:text-lg">
                   {person.name}
                 </h3>
-                <p className="mt-1 text-[0.7rem] tracking-[0.14em] text-keaas uppercase">
+                <p className="mt-1 text-[0.6rem] tracking-[0.12em] text-keaas uppercase sm:text-[0.7rem] sm:tracking-[0.14em]">
                   {person.role}
                 </p>
               </div>
