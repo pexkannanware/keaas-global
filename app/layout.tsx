@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "KEAAS Global Services — Expertise Delivered.",
+    default: "KEAAS Global Services (KEAAS) | SAP Experts",
     template: "%s · KEAAS Global Services",
   },
   description: company.description,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     google: "ZFXAYd8ELTFvFDtZfeB70bv7zEpLHomAsckD5RCwJ1Y",
   },
   openGraph: {
-    title: "KEAAS Global Services — Expertise Delivered.",
+    title: "KEAAS Global Services (KEAAS) | SAP Experts",
     description: company.description,
     type: "website",
     locale: "en_GB",

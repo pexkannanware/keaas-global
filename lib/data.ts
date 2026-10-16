@@ -4,7 +4,7 @@ export const company = {
   tagline: "Expertise Delivered.",
   email: "Keaasglobal@kannanware.com",
   description:
-    "Experts-as-a-Service company providing specialist talent and complete delivery teams to System Integrators worldwide.",
+    "KEAAS Global Services (KEAAS) provides vetted SAP consultants, expert pods and rapid-response teams to System Integrators worldwide.",
 };
 
 export const nav = [
