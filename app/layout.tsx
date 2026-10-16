@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     apple: "/KEAAS-k-favicon.png",
   },
   metadataBase: new URL("https://keaas.com"),
+  verification: {
+    google: "ZFXAYd8ELTFvFDtZfeB70bv7zEpLHomAsckD5RCwJ1Y",
+  },
   openGraph: {
     title: "KEAAS Global Services — Expertise Delivered.",
     description: company.description,
