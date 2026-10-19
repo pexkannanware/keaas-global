@@ -50,21 +50,25 @@ jobs:
           [[ "$APP_DIR" =~ ^/[a-zA-Z0-9_./-]+$ ]]
           [[ "$PROXY_DIR" =~ ^/[a-zA-Z0-9_./-]+$ ]]
 
-      - name: Build production image
-        run: |
-          docker build --pull --platform linux/amd64 \
-            --tag "keaas-global:$GITHUB_SHA" .
-          docker save "keaas-global:$GITHUB_SHA" | gzip > image.tar.gz
-
       - name: Configure SSH
         env:
           SSH_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
         run: |
           install -d -m 700 ~/.ssh
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
-          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/deploy_key ~/.ssh/known_hosts
+          if ! ssh-keygen -y -P '' -f ~/.ssh/deploy_key > /dev/null 2>&1; then
+            echo '::error::DO_SSH_PRIVATE_KEY is not a readable, unencrypted private key. Update it in Settings > Environments > production > Environment secrets. Paste the entire private key with actual line breaks and BEGIN/END lines.'
+            exit 1
+          fi
+
+      - name: Build production image
+        run: |
+          docker build --pull --platform linux/amd64 \
+            --tag "keaas-global:$GITHUB_SHA" .
+          docker save "keaas-global:$GITHUB_SHA" | gzip > image.tar.gz
 
       - name: Transfer and deploy image
         shell: bash
