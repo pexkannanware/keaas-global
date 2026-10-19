@@ -33,4 +33,4 @@ npx serve out
 
 - **Netlify:** `npx netlify deploy --dir=out --no-build --prod`
 - **Vercel:** `npx vercel --prod`
-- **GitHub Pages:** push to `main` (or this feature branch) after Pages is set to GitHub Actions. The workflow sets `GITHUB_PAGES=true` so assets use the `/KEASS` base path.
+- **DigitalOcean:** every push or merge to `main` triggers the deployment workflow. See [DEPLOY.md](DEPLOY.md) for the one-time setup.

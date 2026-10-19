@@ -292,19 +292,17 @@ Deployments run one at a time. The last successful commit is recorded in
 monitor Droplet disk usage and remove older `keaas-global:<sha>` images when no longer
 needed. Do not prune images used by the other applications.
 
-The repository's existing **Deploy to GitHub Pages** workflow still runs independently.
-It uses a separate build with `GITHUB_PAGES=true`; the DigitalOcean build uses the
-root domain configuration. Source files in the Droplet checkout are not synchronized
-by CI; run `git pull` there before a later manual source build.
+DigitalOcean is the only automated deployment destination. Its build uses the root
+domain configuration. Source files in the Droplet checkout are not synchronized by
+CI; run `git pull` there before a later manual source build.
 
 Workflow behavior follows the [GitHub Actions workflow reference](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
 and [Docker Compose deployment options](https://docs.docker.com/reference/cli/docker/compose/up/).
 
 ## Notes on this app specifically
 
-- `next.config.ts` sets `basePath`/`assetPrefix` based on `GITHUB_PAGES=true`, used only for
-  the GitHub Pages build. Don't set that env var on the droplet — self-hosting needs an empty
-  base path, which is the default.
+- `next.config.ts` retains a legacy `GITHUB_PAGES=true` option for a `/KEASS` base path.
+  Leave that variable unset for DigitalOcean; the site uses the default empty base path.
 - `output: "export"` + `trailingSlash: true` means the build emits directories with
   `index.html` (e.g. `/about/index.html`). `nginx.static.conf` in this repo handles that with
   `try_files $uri $uri/ $uri.html /404.html;` — no changes needed there for new pages.
