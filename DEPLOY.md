@@ -186,7 +186,7 @@ Droplet script: [`scripts/deploy-digitalocean.sh`](scripts/deploy-digitalocean.s
 
 Every push to `main`, including a merged pull request, triggers this workflow.
 There are no contributor or file-path filters. Builds run on a GitHub-hosted Ubuntu
-runner, and deployment runs against DigitalOcean using repository secrets. Contributors
+runner, and deployment runs against DigitalOcean using shared GitHub secrets. Contributors
 only need permission to push or merge into `main`; their computers do not need Docker,
 Node.js, deployment SSH keys, or any local CI/CD configuration. A repository administrator
 configures the shared credentials once using GitHub settings and the Droplet console.
@@ -211,7 +211,7 @@ chmod 600 ~/.ssh/authorized_keys
 cat "$deploy_key_dir/key"
 ```
 
-Save the displayed private key as the GitHub repository secret described below. The
+Save the displayed private key as the GitHub Actions secret described below. The
 public key has been added to this deployment user's `authorized_keys`.
 This user must be able to run Docker without
 an interactive sudo prompt, write to `/var/www/keaasglobal`, and access the proxy's
@@ -221,10 +221,12 @@ Docker access grants administrative control of the Droplet, so keep this key pri
 
 ### 2. Configure GitHub settings
 
-In the GitHub repository, open **Settings → Secrets and variables → Actions → Secrets**
-and use **New repository secret** to add these shared credentials. This workflow uses
-repository secrets directly and does not require a deployment environment or manual
-environment approval.
+In the GitHub repository, open **Settings → Environments → production** (create it
+if missing), and add the four shared credentials below under **Environment secrets**.
+The workflow is attached to this environment. Leave required reviewers and wait timers
+unset for automatic deployment on every push to `main`. You can restrict deployment
+branches to `main`. Repository secrets with the same names also work when no matching
+environment secret exists; environment secrets take precedence.
 
 | Secret | Value |
 | --- | --- |
@@ -253,7 +255,8 @@ run `ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub` in the Droplet console an
 the ED25519 fingerprint. Paste the verified entry into `DO_SSH_KNOWN_HOSTS`.
 For a custom SSH port, use that port in `ssh-keyscan` too.
 
-Optional repository **variables**, under the **Variables** tab on the same settings page:
+Optional **environment variables**, under the `production` environment's variables
+section (repository variables also work):
 
 | Variable | Default |
 | --- | --- |

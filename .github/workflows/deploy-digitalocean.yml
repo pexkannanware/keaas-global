@@ -19,7 +19,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    # Repository secrets are shared by workflow runs, regardless of who pushed.
+    # Use the shared production secrets for every contributor's push to main.
+    environment: production
     env:
       DEPLOY_HOST: ${{ secrets.DO_HOST }}
       DEPLOY_USER: ${{ secrets.DO_USER }}
