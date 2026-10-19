@@ -1,0 +1,84 @@
+name: Deploy to DigitalOcean
+
+on:
+  # Any contributor's push (including merged PRs) to main triggers deployment.
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Let an active deployment finish before starting another one.
+concurrency:
+  group: digitalocean-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    # Repository secrets are shared by workflow runs, regardless of who pushed.
+    env:
+      DEPLOY_HOST: ${{ secrets.DO_HOST }}
+      DEPLOY_USER: ${{ secrets.DO_USER }}
+      DEPLOY_PORT: ${{ vars.DO_SSH_PORT || '22' }}
+      APP_DIR: ${{ vars.DO_APP_DIR || '/var/www/keaasglobal' }}
+      PROXY_DIR: ${{ vars.DO_PROXY_DIR || '/var/www/s4hana-elevate/kannanwarerevamp' }}
+      RELEASE: keaas-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate deployment settings
+        shell: bash
+        env:
+          SSH_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          for name in DEPLOY_HOST DEPLOY_USER SSH_KEY KNOWN_HOSTS; do
+            if [[ -z "${!name}" ]]; then
+              echo "::error::Missing deployment setting: $name. See DEPLOY.md."
+              exit 1
+            fi
+          done
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]]
+          [[ "$DEPLOY_USER" =~ ^[a-zA-Z_][a-zA-Z0-9_-]*$ ]]
+          [[ "$DEPLOY_PORT" =~ ^[0-9]+$ ]]
+          [[ "$APP_DIR" =~ ^/[a-zA-Z0-9_./-]+$ ]]
+          [[ "$PROXY_DIR" =~ ^/[a-zA-Z0-9_./-]+$ ]]
+
+      - name: Build production image
+        run: |
+          docker build --pull --platform linux/amd64 \
+            --tag "keaas-global:$GITHUB_SHA" .
+          docker save "keaas-global:$GITHUB_SHA" | gzip > image.tar.gz
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy_key ~/.ssh/known_hosts
+
+      - name: Transfer and deploy image
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh_options=(-i "$HOME/.ssh/deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
+          remote="$DEPLOY_USER@$DEPLOY_HOST"
+          staging=".keaas-deploy/$RELEASE"
+          ssh "${ssh_options[@]}" -p "$DEPLOY_PORT" "$remote" "mkdir -p '$staging'"
+          scp "${ssh_options[@]}" -P "$DEPLOY_PORT" \
+            image.tar.gz docker-compose.yml scripts/deploy-digitalocean.sh \
+            "$remote:$staging/"
+          ssh "${ssh_options[@]}" -p "$DEPLOY_PORT" "$remote" \
+            "bash '$staging/deploy-digitalocean.sh' '$staging' '$APP_DIR' '$PROXY_DIR' '$GITHUB_SHA'"
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

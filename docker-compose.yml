@@ -4,6 +4,12 @@ services:
     image: keaas-global:latest
     container_name: keaas-global-web
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 5s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
     # No host ports published — reached only via kannanware's nginx,
     # which proxies to this container by name over the shared network below.
     networks:
